@@ -38,8 +38,11 @@ while palavra != lista_resposta:
         print(letra, end=' ')
     print()
     print('Palpites digitados: ', end=' ')
-    for letra in conjunto_palpites:
-        print(letra, end='-')
+    for c, letra in enumerate(conjunto_palpites):
+        if c > 0:
+            print(f"- {letra}", end=' ')
+        else:
+            print(letra, end=' ')
 
     print(f'\n{linha()}')
 
