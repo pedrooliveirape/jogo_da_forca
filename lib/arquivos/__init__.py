@@ -1,3 +1,6 @@
+from random import randint
+
+
 def validar_palavra(msg):
     palavra = msg
     letras = set(palavra)
@@ -17,3 +20,9 @@ def validar_palpite(palpites, letra):
             return letra_palpite
         else:
             letra_palpite = str(input(f'A letra {letra_palpite.upper()} já foi digitada! Digite outra letra: ')).lower()[0]
+
+
+def sortea_palavra(lista):
+    numero_sorteado = randint(0, len(lista))
+    palavra_sorteada = lista[numero_sorteado]
+    return palavra_sorteada

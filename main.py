@@ -1,12 +1,15 @@
-from lib.interface import cabecalho
-from lib.arquivos import validar_palavra, validar_palpite
+from lib.interface import cabecalho, linha
+from lib.arquivos import validar_palavra, validar_palpite, sortea_palavra
+from lib.leitor_de_texto import lerarquivo
 from time import sleep
 
 
 cabecalho('JOGO DA FORCA')
-digite_palavra = str(input('Digite uma palavra com mais de 6 letras: ')).upper()
-palavra = validar_palavra(digite_palavra)
-print(f'a palabra tem {len(palavra)} letras:')
+endereco_texto = 'lib/leitor_de_texto/contos/joao_e_maria.txt'
+receber_palavras = lerarquivo(endereco_texto)
+palavra_sorteada = sortea_palavra(receber_palavras).upper()
+palavra = validar_palavra(palavra_sorteada)
+print(f'A palavra tem {len(palavra)} letras:')
 
 conjunto_palpites = set()
 palavra = list(palavra)
@@ -28,18 +31,19 @@ while palavra != lista_resposta:
     if palpite not in palavra:
         print(f'ERRO! A palavra não tem a letra {palpite.upper()}')
         erros += 1
-        if erros == 4:
-            break
 
     sleep(0.5)
     print(f'\033[33mErro: {erros}/4\033[m')
-    print()
     for letra in lista_resposta:
         print(letra, end=' ')
     print()
     print('Palpites digitados: ', end=' ')
     for letra in conjunto_palpites:
         print(letra, end='-')
-    print('\n')
+
+    print(f'\n{linha()}')
+
+    if erros == 4:
+            break
 
 print('FIM')
