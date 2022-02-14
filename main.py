@@ -1,5 +1,5 @@
 from lib.interface import cabecalho
-from testes import validar_palavra, validar_palpite
+from lib.arquivos import validar_palavra, validar_palpite
 from time import sleep
 
 
